@@ -8,6 +8,7 @@
     <meta name="description"
         content="Get genuine medicines, supplements, and healthcare products delivered safely to your doorstep with MediCare.">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/cart.js"></script>
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -121,7 +122,12 @@
                         <div class="card-footer">
                             <span class="price">$89.99 <span
                                     style="font-size: 0.875rem; color: var(--gray-500); text-decoration: line-through;">$149.99</span></span>
-                            <button class="btn-primary">View Details</button>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-primary" style="padding: 0.5rem;"
+                                    onclick="event.stopPropagation(); addToCart({id: 'o1', title: 'Full Body Health Check', price: 89.99, image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&h=400&fit=crop'})"><i
+                                        data-lucide="shopping-cart" style="width: 1.25rem;"></i></button>
+                                <button class="btn-primary">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,7 +141,12 @@
                         <div class="card-footer">
                             <span class="price">$34.99 <span
                                     style="font-size: 0.875rem; color: var(--gray-500); text-decoration: line-through;">$49.99</span></span>
-                            <button class="btn-primary">View Details</button>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-primary" style="padding: 0.5rem;"
+                                    onclick="event.stopPropagation(); addToCart({id: 'o2', title: 'Immunity Booster Kit', price: 34.99, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=400&fit=crop'})"><i
+                                        data-lucide="shopping-cart" style="width: 1.25rem;"></i></button>
+                                <button class="btn-primary">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -169,7 +180,12 @@
                         <p class="card-text">Fast-acting relief for headaches, fever, and muscle pain.</p>
                         <div class="card-footer">
                             <span class="price">$9.99</span>
-                            <button class="btn-primary">View Details</button>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-primary" style="padding: 0.5rem;"
+                                    onclick="event.stopPropagation(); addToCart({id: 'p1', title: 'Advanced Pain Relief', price: 9.99, image: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=400&h=300&fit=crop'})"><i
+                                        data-lucide="shopping-cart" style="width: 1.25rem;"></i></button>
+                                <button class="btn-primary">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -182,7 +198,12 @@
                         <p class="card-text">High-potency antioxidant support for your immune health.</p>
                         <div class="card-footer">
                             <span class="price">$14.99</span>
-                            <button class="btn-primary">View Details</button>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-primary" style="padding: 0.5rem;"
+                                    onclick="event.stopPropagation(); addToCart({id: 'p2', title: 'Vitamin C 1000mg', price: 14.99, image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=800&h=400&fit=crop'})"><i
+                                        data-lucide="shopping-cart" style="width: 1.25rem;"></i></button>
+                                <button class="btn-primary">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -195,7 +216,12 @@
                         <p class="card-text">Complete medical emergency kit for home and travel use.</p>
                         <div class="card-footer">
                             <span class="price">$29.99</span>
-                            <button class="btn-primary">View Details</button>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-primary" style="padding: 0.5rem;"
+                                    onclick="event.stopPropagation(); addToCart({id: 'p3', title: 'Family First Aid Kit', price: 29.99, image: 'https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?w=400&h=300&fit=crop'})"><i
+                                        data-lucide="shopping-cart" style="width: 1.25rem;"></i></button>
+                                <button class="btn-primary">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -208,7 +234,12 @@
                         <p class="card-text">Kills 99.9% of germs with moisturizing skin protection.</p>
                         <div class="card-footer">
                             <span class="price">$5.99</span>
-                            <button class="btn-primary">View Details</button>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-primary" style="padding: 0.5rem;"
+                                    onclick="event.stopPropagation(); addToCart({id: 'p4', title: 'Hospital Grade Sanitizer', price: 5.99, image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=300&fit=crop'})"><i
+                                        data-lucide="shopping-cart" style="width: 1.25rem;"></i></button>
+                                <button class="btn-primary">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -221,7 +252,12 @@
                         <p class="card-text">Highly accurate infrared non-contact thermometer.</p>
                         <div class="card-footer">
                             <span class="price">$19.99</span>
-                            <button class="btn-primary">View Details</button>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-primary" style="padding: 0.5rem;"
+                                    onclick="event.stopPropagation(); addToCart({id: 'p5', title: 'Digital Thermometer', price: 19.99, image: 'https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=400&h=300&fit=crop'})"><i
+                                        data-lucide="shopping-cart" style="width: 1.25rem;"></i></button>
+                                <button class="btn-primary">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -234,7 +270,12 @@
                         <p class="card-text">5-layer filtration system for maximum breathing safety.</p>
                         <div class="card-footer">
                             <span class="price">$12.99</span>
-                            <button class="btn-primary">View Details</button>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-primary" style="padding: 0.5rem;"
+                                    onclick="event.stopPropagation(); addToCart({id: 'p6', title: 'N95 Protective Masks', price: 12.99, image: 'https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=400&h=300&fit=crop'})"><i
+                                        data-lucide="shopping-cart" style="width: 1.25rem;"></i></button>
+                                <button class="btn-primary">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>

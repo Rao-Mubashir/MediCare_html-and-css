@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - MediCare</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/cart.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
@@ -83,7 +84,7 @@
                     </div>
                 </div>
 
-                <button class="btn-add-cart" onclick="addToCart()">
+                <button class="btn-add-cart" onclick="addToCartClicked()">
                     <i data-lucide="shopping-cart"></i>
                     <span>Add to Cart</span>
                 </button>
@@ -239,9 +240,20 @@
             lucide.createIcons();
         }
 
-        function addToCart() {
-            // Simple visual feedback
-            const btn = event.currentTarget;
+        function addToCartClicked() {
+            const product = productData[productId];
+            if (!product) return;
+
+            // Call the shared logic from cart.js
+            addToCart({
+                id: productId,
+                title: product.title,
+                price: product.price,
+                image: product.image
+            });
+
+            // Local visual feedback
+            const btn = document.querySelector('.btn-add-cart');
             const originalContent = btn.innerHTML;
             btn.innerHTML = '<span>Added to Cart!</span>';
             btn.style.background = '#065f46';
