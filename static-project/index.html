@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare - Your Health, Our Priority</title>
+    <meta name="description"
+        content="Get genuine medicines, supplements, and healthcare products delivered safely to your doorstep with MediCare.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .hidden-mobile {
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .hidden-mobile {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="pill"></i>
+                </div>
+                <span class="logo-text">MediCare</span>
+            </a>
+
+            <nav class="nav-desktop">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="admin/dashboard.html" class="nav-link">Admin</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="cart.html" class="cart-button">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+                <button class="mobile-menu-btn md-hidden" style="color: var(--gray-600);">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section style="position: relative; background-color: #064e3b; color: white; overflow: hidden;">
+            <!-- Background Image -->
+            <div style="position: absolute; inset: 0;">
+                <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=1979&auto=format&fit=crop"
+                    alt="Medical Hero"
+                    style="width: 100%; height: 100%; object-fit: cover; opacity: 0.4; mix-blend-mode: overlay;">
+                <div
+                    style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(6, 78, 59, 0.9), rgba(6, 95, 70, 0.8)); backdrop-filter: blur(1px);">
+                </div>
+            </div>
+
+            <div class="container" style="position: relative; padding: 5rem 1rem;">
+                <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+                    <div
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(4px); border-radius: 9999px; border: 1px solid rgba(167, 243, 208, 0.2); margin-bottom: 1.5rem;">
+                        <i data-lucide="shield-check" style="width: 1rem; height: 1rem; color: #6ee7b7;"></i>
+                        <span style="font-size: 0.875rem; font-weight: 500; color: #ecfdf5;">Trusted • Certified • Fast
+                            Delivery</span>
+                    </div>
+
+                    <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;">
+                        Your Health,<br><span style="color: white;">Our Priority</span>
+                    </h1>
+                    <p
+                        style="font-size: 1.125rem; color: rgba(209, 250, 229, 0.9); margin-bottom: 2rem; max-width: 42rem; margin-left: auto; margin-right: auto;">
+                        Get genuine medicines, supplements, and healthcare products delivered safely to your doorstep
+                        with MediCare.
+                    </p>
+
+                    <div
+                        style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem; font-size: 0.875rem; color: #ecfdf5; background-color: rgba(255, 255, 255, 0.05); padding: 1rem 1.5rem; border-radius: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.1); width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="truck" style="width: 1.25rem; height: 1.25rem; color: #34d399;"></i>
+                            <span>Express Delivery</span>
+                        </div>
+                        <div style="width: 1px; height: 1rem; background-color: rgba(255, 255, 255, 0.2);"
+                            class="hidden-mobile"></div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="stethoscope" style="width: 1.25rem; height: 1.25rem; color: #34d399;"></i>
+                            <span>Expert Pharmacists</span>
+                        </div>
+                        <div style="width: 1px; height: 1rem; background-color: rgba(255, 255, 255, 0.2);"
+                            class="hidden-mobile"></div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="sparkles" style="width: 1.25rem; height: 1.25rem; color: #34d399;"></i>
+                            <span>100% Genuine</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Categories -->
+        <section class="container" style="padding: 4rem 1rem;">
+            <h2 class="section-title">Health Packages</h2>
+            <div class="offers-grid">
+                <!-- Offer Card 1 -->
+                <div class="card" onclick="window.location.href='product-details.html?id=o1'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&h=400&fit=crop"
+                        alt="Health Checkup" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">Full Body Health Check</h3>
+                        <p class="card-text">Comprehensive diagnostic package for proactive health monitoring.</p>
+                        <div class="card-footer">
+                            <span class="price">$89.99 <span
+                                    style="font-size: 0.875rem; color: var(--gray-500); text-decoration: line-through;">$149.99</span></span>
+                            <button class="btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Offer Card 2 -->
+                <div class="card" onclick="window.location.href='product-details.html?id=o2'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=400&fit=crop"
+                        alt="Vitamins" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">Immunity Booster Kit</h3>
+                        <p class="card-text">Essential vitamins and supplements to strengthen your defense system.</p>
+                        <div class="card-footer">
+                            <span class="price">$34.99 <span
+                                    style="font-size: 0.875rem; color: var(--gray-500); text-decoration: line-through;">$49.99</span></span>
+                            <button class="btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Offer Card 3 -->
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&h=400&fit=crop"
+                        alt="Chronic Care" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">Monthly Medicine Refill</h3>
+                        <p class="card-text">Get 20% off on your regular prescription refills every month.</p>
+                        <div class="card-footer">
+                            <span class="price">Save 20% <span
+                                    style="font-size: 0.875rem; color: var(--gray-500); text-decoration: line-through;">Retail</span></span>
+                            <button class="btn-primary">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pharmacy Store -->
+        <section class="container" style="padding: 0 1rem 4rem;">
+            <h2 class="section-title">Essential Medicines</h2>
+            <div class="menu-grid">
+                <!-- Product Card 1 -->
+                <div class="card" onclick="window.location.href='product-details.html?id=p1'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?w=400&h=300&fit=crop"
+                        alt="Paracetamol" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">Advanced Pain Relief</h3>
+                        <p class="card-text">Fast-acting relief for headaches, fever, and muscle pain.</p>
+                        <div class="card-footer">
+                            <span class="price">$9.99</span>
+                            <button class="btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="card" onclick="window.location.href='product-details.html?id=p2'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=800&h=400&fit=crop"
+                        alt="Vitamin C" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">Vitamin C 1000mg</h3>
+                        <p class="card-text">High-potency antioxidant support for your immune health.</p>
+                        <div class="card-footer">
+                            <span class="price">$14.99</span>
+                            <button class="btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="card" onclick="window.location.href='product-details.html?id=p3'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?w=800&h=400&fit=crop"
+                        alt="First Aid" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">Family First Aid Kit</h3>
+                        <p class="card-text">Complete medical emergency kit for home and travel use.</p>
+                        <div class="card-footer">
+                            <span class="price">$29.99</span>
+                            <button class="btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 4 -->
+                <div class="card" onclick="window.location.href='product-details.html?id=p4'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&h=400&fit=crop"
+                        alt="Sanitizer" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">Hospital Grade Sanitizer</h3>
+                        <p class="card-text">Kills 99.9% of germs with moisturizing skin protection.</p>
+                        <div class="card-footer">
+                            <span class="price">$5.99</span>
+                            <button class="btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 5 -->
+                <div class="card" onclick="window.location.href='product-details.html?id=p5'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=800&h=400&fit=crop"
+                        alt="Thermometer" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">Digital Thermometer</h3>
+                        <p class="card-text">Highly accurate infrared non-contact thermometer.</p>
+                        <div class="card-footer">
+                            <span class="price">$19.99</span>
+                            <button class="btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 6 -->
+                <div class="card" onclick="window.location.href='product-details.html?id=p6'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=800&h=400&fit=crop"
+                        alt="Masks" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">N95 Protective Masks</h3>
+                        <p class="card-text">5-layer filtration system for maximum breathing safety.</p>
+                        <div class="card-footer">
+                            <span class="price">$12.99</span>
+                            <button class="btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 1.5rem;">
+                    <div class="logo-icon">
+                        <i data-lucide="pill"></i>
+                    </div>
+                    <span class="logo-text" style="color: white;">MediCare</span>
+                </a>
+                <p style="font-size: 0.875rem;">Your trusted partner for health and wellness. Quality medicines
+                    delivered with care.</p>
+            </div>
+
+            <div>
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html" class="footer-link">About Us</a></li>
+                    <li><a href="index.html" class="footer-link">Medicines</a></li>
+                    <li><a href="index.html" class="footer-link">Offers</a></li>
+                    <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    <li><a href="admin/dashboard.html" class="footer-link">Admin</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="footer-title">Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="footer-link">Terms of Service</a></li>
+                    <li><a href="refund.html" class="footer-link">Refund Policy</a></li>
+                    <li><a href="cookies.html" class="footer-link">Cookie Policy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="footer-title">Contact Us</h3>
+                <ul class="footer-contact">
+                    <li><i data-lucide="phone" style="width: 1rem; color: #6ee7b7;"></i> <span>+1 (555)
+                            777-HEALTH</span>
+                    </li>
+                    <li><i data-lucide="mail" style="width: 1rem; color: #6ee7b7;"></i>
+                        <span>support@medicare.com</span>
+                    </li>
+                    <li><i data-lucide="map-pin" style="width: 1rem; color: #6ee7b7;"></i> <span>456 Medical Blvd,
+                            Healthcare City, HC 90210</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 MediCare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

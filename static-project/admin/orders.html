@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking - MediCare Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .admin-main {
+            padding: 2rem 0;
+            background: #f9fafb;
+            min-height: calc(100vh - 80px);
+        }
+
+        .stats-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .stats-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .summary-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f9fafb;
+            padding: 1rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #4b5563;
+            text-transform: uppercase;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.875rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-processing {
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+        .status-new {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+
+        .payment-paid {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .payment-pending {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+
+        .btn-view {
+            color: #059669;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-overlay {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon"><i data-lucide="pill"></i></div>
+                <span class="logo-text">MediCare</span>
+            </a>
+            <nav class="nav-desktop">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../about.html" class="nav-link">About Us</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link active">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <div style="background: white; border-bottom: 1px solid #e5e7eb;">
+        <div class="container" style="padding: 1rem;">
+            <a href="dashboard.html"
+                style="display: flex; align-items: center; gap: 0.5rem; color: #4b5563; text-decoration: none; font-weight: 500;">
+                <i data-lucide="arrow-left" style="width: 1.25rem;"></i>
+                <span>Back to Dashboard</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="orderModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 style="font-weight: 700;">Pharmacy Order Detail</h2>
+                    <p id="modalOrderId" style="font-family: monospace; font-size: 0.875rem; color: #6b7280;">ORD-001
+                    </p>
+                </div>
+                <button onclick="closeModal()"
+                    style="color: #6b7280; background: none; border: none; cursor: pointer;"><i
+                        data-lucide="x"></i></button>
+            </div>
+
+            <div style="background: #f9fafb; padding: 1rem; border-radius: 1rem; margin-bottom: 1.5rem;">
+                <h3 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.75rem;">Patient Information</h3>
+                <div style="font-size: 0.875rem;">
+                    <p style="margin-bottom: 0.5rem;"><span style="color: #6b7280;">Name:</span> <span
+                            id="modalCustomerName" style="font-weight: 500;">John Doe</span></p>
+                    <p style="margin-bottom: 0.5rem;"><span style="color: #6b7280;">Email:</span> <span
+                            id="modalCustomerEmail" style="font-weight: 500;">john@example.com</span></p>
+                    <p><span style="color: #6b7280;">Contact:</span> <span style="font-weight: 500;">+1 (555)
+                            777-HEALTH</span></p>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.75rem;">Medical Supplies</h3>
+                <div
+                    style="display: flex; gap: 1rem; padding: 0.75rem; background: #f9fafb; border-radius: 0.75rem; margin-bottom: 0.5rem;">
+                    <div
+                        style="width: 3rem; height: 3rem; background: #e5e7eb; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: #059669;">
+                        <i data-lucide="pill"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <p style="font-weight: 500; font-size: 0.875rem;">Advanced Pain Relief</p>
+                        <p style="font-size: 0.75rem; color: #6b7280;">$9.99 × 2</p>
+                    </div>
+                    <p style="font-weight: 600; font-size: 0.875rem;">$19.98</p>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                    <span style="color: #6b7280;">Payment Verif:</span>
+                    <span class="status-badge payment-paid">Verified</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.875rem;">
+                    <span style="color: #6b7280;">Fulfillment:</span>
+                    <span class="status-badge status-completed">Dispatched</span>
+                </div>
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+                    <span style="font-weight: 700;">Invoice Total:</span>
+                    <span style="font-size: 1.25rem; font-weight: 700; color: #059669;">$42.50</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="admin-main">
+        <div class="container">
+            <div style="margin-bottom: 2rem;">
+                <h1 style="font-size: 1.875rem; font-weight: 700;">Pharmacy Fulfillment</h1>
+                <p style="color: #4b5563;">Track and manage medical supply deliveries</p>
+            </div>
+
+            <!-- Stats Summary -->
+            <div class="stats-summary">
+                <div class="summary-card">
+                    <p style="font-size: 0.75rem; color: #6b7280; margin-bottom: 0.25rem;">Clinical Orders</p>
+                    <p style="font-size: 1.5rem; font-weight: 700;">124</p>
+                </div>
+                <div class="summary-card">
+                    <p style="font-size: 0.75rem; color: #6b7280; margin-bottom: 0.25rem;">New Inquiries</p>
+                    <p style="font-size: 1.5rem; font-weight: 700; color: #854d0e;">12</p>
+                </div>
+                <div class="summary-card">
+                    <p style="font-size: 0.75rem; color: #6b7280; margin-bottom: 0.25rem;">Dispensing</p>
+                    <p style="font-size: 1.5rem; font-weight: 700; color: #059669;">8</p>
+                </div>
+                <div class="summary-card">
+                    <p style="font-size: 0.75rem; color: #6b7280; margin-bottom: 0.25rem;">Completed</p>
+                    <p style="font-size: 1.5rem; font-weight: 700; color: #15803d;">104</p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ref ID</th>
+                            <th>Patient</th>
+                            <th>Contact</th>
+                            <th>Amount</th>
+                            <th>Transaction</th>
+                            <th>Clinical Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span style="font-family: monospace; font-weight: 600;">ORD-001</span><br><span
+                                    style="font-size: 0.75rem; color: #6b7280;">Jan 3, 2026</span></td>
+                            <td style="font-weight: 500;">John Doe</td>
+                            <td>
+                                <div
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #6b7280;">
+                                    <i data-lucide="mail" style="width: 0.75rem;"></i> john@medicare.com
+                                </div>
+                            </td>
+                            <td style="font-weight: 700;">$42.50</td>
+                            <td><span class="status-badge payment-paid">Verified</span></td>
+                            <td><span class="status-badge status-completed">Delivered</span></td>
+                            <td>
+                                <div onclick="openOrderModal('ORD-001')" class="btn-view"><i data-lucide="eye"
+                                        style="width: 1rem;"></i> Review</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-family: monospace; font-weight: 600;">ORD-002</span><br><span
+                                    style="font-size: 0.75rem; color: #6b7280;">Jan 3, 2026</span></td>
+                            <td style="font-weight: 500;">Jane Smith</td>
+                            <td>
+                                <div
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #6b7280;">
+                                    <i data-lucide="mail" style="width: 0.75rem;"></i> jane@medicare.com
+                                </div>
+                            </td>
+                            <td style="font-weight: 700;">$25.98</td>
+                            <td><span class="status-badge payment-paid">Verified</span></td>
+                            <td><span class="status-badge status-processing">Dispatching</span></td>
+                            <td>
+                                <div onclick="openOrderModal('ORD-002')" class="btn-view"><i data-lucide="eye"
+                                        style="width: 1rem;"></i> Review</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-family: monospace; font-weight: 600;">ORD-003</span><br><span
+                                    style="font-size: 0.75rem; color: #6b7280;">Jan 3, 2026</span></td>
+                            <td style="font-weight: 500;">Mike Johnson</td>
+                            <td>
+                                <div
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #6b7280;">
+                                    <i data-lucide="mail" style="width: 0.75rem;"></i> mike@medicare.com
+                                </div>
+                            </td>
+                            <td style="font-weight: 700;">$15.99</td>
+                            <td><span class="status-badge payment-pending">Pending</span></td>
+                            <td><span class="status-badge status-new">New Inq</span></td>
+                            <td>
+                                <div onclick="openOrderModal('ORD-003')" class="btn-view"><i data-lucide="eye"
+                                        style="width: 1rem;"></i> Review</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="../index.html" class="logo" style="margin-bottom: 1.5rem;">
+                    <div class="logo-icon"><i data-lucide="pill"></i></div>
+                    <span class="logo-text" style="color: white;">MediCare</span>
+                </a>
+                <p style="font-size: 0.875rem;">Your trusted partner for health and wellness. Quality medicines
+                    delivered with care.</p>
+            </div>
+            <div>
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="../about.html" class="footer-link">About Us</a></li>
+                    <li><a href="../index.html" class="footer-link">Medicines</a></li>
+                    <li><a href="../index.html" class="footer-link">Offers</a></li>
+                    <li><a href="../contact.html" class="footer-link">Contact</a></li>
+                    <li><a href="dashboard.html" class="footer-link">Admin</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="../privacy.html" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="../terms.html" class="footer-link">Terms of Service</a></li>
+                    <li><a href="../refund.html" class="footer-link">Refund Policy</a></li>
+                    <li><a href="../cookies.html" class="footer-link">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Contact Us</h3>
+                <ul class="footer-contact">
+                    <li><i data-lucide="phone" style="width: 1rem; color: #6ee7b7;"></i> <span>+1 (555)
+                            777-HEALTH</span>
+                    </li>
+                    <li><i data-lucide="mail" style="width: 1rem; color: #6ee7b7;"></i>
+                        <span>support@medicare.com</span>
+                    </li>
+                    <li><i data-lucide="map-pin" style="width: 1rem; color: #6ee7b7;"></i> <span>456 Medical Blvd, HC
+                            90210</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 MediCare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function openOrderModal(orderId) {
+            const modal = document.getElementById('orderModal');
+            document.getElementById('modalOrderId').innerText = orderId;
+
+            if (orderId === 'ORD-002') {
+                document.getElementById('modalCustomerName').innerText = 'Jane Smith';
+                document.getElementById('modalCustomerEmail').innerText = 'jane@medicare.com';
+            } else if (orderId === 'ORD-003') {
+                document.getElementById('modalCustomerName').innerText = 'Mike Johnson';
+                document.getElementById('modalCustomerEmail').innerText = 'mike@medicare.com';
+            } else {
+                document.getElementById('modalCustomerName').innerText = 'John Doe';
+                document.getElementById('modalCustomerEmail').innerText = 'john@medicare.com';
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('orderModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

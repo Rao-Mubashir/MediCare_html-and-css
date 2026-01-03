@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - MediCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="pill"></i>
+                </div>
+                <span class="logo-text">MediCare</span>
+            </a>
+
+            <nav class="nav-desktop">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="admin/dashboard.html" class="nav-link">Admin</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="cart.html" class="cart-button">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+                <button class="mobile-menu-btn md-hidden" style="color: var(--gray-600);">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="details-container" id="productDetail">
+        <a href="index.html" class="back-btn">
+            <i data-lucide="arrow-left" style="width: 1.25rem;"></i>
+            <span>Back to Products</span>
+        </a>
+
+        <div class="details-grid">
+            <!-- Image Section -->
+            <div class="details-image-section">
+                <img id="productImage" src="" alt="Product" class="details-image">
+                <div id="discountBadge"
+                    style="display: none; position: absolute; top: 1.5rem; left: 1.5rem; background: #ef4444; color: white; padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 700; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    20% OFF
+                </div>
+            </div>
+
+            <!-- Content Section -->
+            <div class="details-content">
+                <div class="details-tag">
+                    <i data-lucide="star" style="width: 1.25rem; fill: currentColor;"></i>
+                    <span>Premium Quality</span>
+                </div>
+
+                <h1 id="productTitle" class="details-title">Product Name</h1>
+                <div class="details-divider"></div>
+
+                <p id="productDesc" class="details-desc">Product description goes here.</p>
+
+                <div class="details-price-block">
+                    <span id="productPrice" class="details-price">$0.00</span>
+                    <span id="originalPrice" class="details-original-price" style="display: none;">$0.00</span>
+                </div>
+
+                <div class="details-features">
+                    <div class="feature-pill">
+                        <i data-lucide="truck" style="color: #059669;"></i>
+                        <span>Free Delivery</span>
+                    </div>
+                    <div class="feature-pill">
+                        <i data-lucide="shield-check" style="color: #059669;"></i>
+                        <span>Certified</span>
+                    </div>
+                </div>
+
+                <button class="btn-add-cart" onclick="addToCart()">
+                    <i data-lucide="shopping-cart"></i>
+                    <span>Add to Cart</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="aboutSection" class="about-section" style="display: none;">
+            <div class="about-header">
+                <div class="about-indicator"></div>
+                <h2>About this Product</h2>
+            </div>
+            <p id="detailedDesc" style="color: #4b5563; line-height: 1.8; white-space: pre-line;"></p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Reusing footer from index.html -->
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 1.5rem;">
+                    <div class="logo-icon"><i data-lucide="pill"></i></div>
+                    <span class="logo-text" style="color: white;">MediCare</span>
+                </a>
+                <p style="font-size: 0.875rem;">Your trusted partner for health and wellness.</p>
+            </div>
+            <div>
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html" class="footer-link">About Us</a></li>
+                    <li><a href="contact.html" class="footer-link">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="footer-link">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Contact Us</h3>
+                <ul class="footer-contact">
+                    <li><i data-lucide="phone" style="width: 1rem; color: #6ee7b7;"></i> <span>+1 (555)
+                            777-HEALTH</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 MediCare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Static data to simulate a database
+        const productData = {
+            'p1': {
+                title: 'Advanced Pain Relief',
+                price: 9.99,
+                image: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&h=600&fit=crop',
+                desc: 'Fast-acting relief for headaches, fever, and muscle pain. Clinically proven formula.',
+                detailed: 'Our Advanced Pain Relief is formulated with high-potency ingredients designed to target pain at its source.\n\nKey Benefits:\n- Fast absorption within 15 minutes\n- Long-lasting effect up to 8 hours\n- Gentle on the stomach\n- Recommended by leading physicians'
+            },
+            'p2': {
+                title: 'Vitamin C 1000mg',
+                price: 14.99,
+                image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=800&h=600&fit=crop',
+                desc: 'High-potency antioxidant support for your immune health. 60 capsules.',
+                detailed: 'Strengthen your immune system with our premium Vitamin C supplement.\n\nFeatures:\n- Pure ascorbic acid\n- Enhanced absorption formula\n- Non-GMO and Gluten-free\n- Daily immune defense'
+            },
+            'p3': {
+                title: 'Family First Aid Kit',
+                price: 29.99,
+                image: 'https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?w=800&h=600&fit=crop',
+                desc: 'Complete medical emergency kit for home and travel use. FDA approved contents.',
+                detailed: 'Be prepared for any situation with our comprehensive First Aid Kit.\n\nIncluded:\n- Sterile bandages and gauze\n- Antiseptic wipes\n- Medical tape and scissors\n- Emergency thermal blanket\n- Comprehensive first aid guide'
+            },
+            'o1': {
+                title: 'Full Body Health Check',
+                price: 89.99,
+                originalPrice: 149.99,
+                discount: '40%',
+                image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&h=600&fit=crop',
+                desc: 'Comprehensive diagnostic package for proactive health monitoring. Home sample collection available.',
+                detailed: 'Take control of your health with our expert-designed Full Body Checkup.\n\nTests Included:\n- Complete Blood Count (CBC)\n- Kidney & Liver Function\n- Lipid Profile (Cholesterol)\n- Blood Sugar (HbA1c)\n- Professional consultation'
+            },
+            'o2': {
+                title: 'Immunity Booster Kit',
+                price: 34.99,
+                originalPrice: 49.99,
+                discount: '30%',
+                image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=600&fit=crop',
+                desc: 'Essential vitamins and supplements to strengthen your defense system.',
+                detailed: 'Season changes require extra care. Our Immunity Kit has everything you need.\n\nWhat is inside:\n- Vitamin C Tablets\n- Zinc Supplements\n- Multivitamin Daily\n- Hand Sanitizer Pro'
+            },
+            'p4': {
+                title: 'Hospital Grade Sanitizer',
+                price: 5.99,
+                image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&h=600&fit=crop',
+                desc: 'Kills 99.9% of germs with moisturizing skin protection.',
+                detailed: 'Professional grade hand hygiene for clinical and daily use.\n\nFeatures:\n- 75% Ethyl Alcohol\n- With Vitamin E and Aloe\n- Quick-dry formula\n- Non-sticky finish'
+            },
+            'p5': {
+                title: 'Digital Thermometer',
+                price: 19.99,
+                image: 'https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=800&h=600&fit=crop',
+                desc: 'Highly accurate infrared non-contact thermometer.',
+                detailed: 'Monitor health safely with our medical-grade non-contact thermometer.\n\nSpecifications:\n- 1-second measurement\n- High temperature alarm\n- LED backlit display\n- Stores last 32 readings'
+            },
+            'p6': {
+                title: 'N95 Protective Masks',
+                price: 12.99,
+                image: 'https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=800&h=600&fit=crop',
+                desc: '5-layer filtration system for maximum breathing safety.',
+                detailed: 'Breathable and highly effective particulate protection.\n\nFeatures:\n- 95% filtration efficiency\n- Adjustable nose clip\n- Elastic ear loops\n- Soft internal lining'
+            }
+        };
+
+        // Get ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        function loadProduct() {
+            const product = productData[productId];
+            if (!product) {
+                document.getElementById('productDetail').innerHTML = `
+                    <div style="text-align: center; padding: 5rem 0;">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Product Not Found</h2>
+                        <a href="index.html" style="color: #059669; font-weight: 600;">Back to Home</a>
+                    </div>
+                `;
+                return;
+            }
+
+            document.getElementById('productTitle').innerText = product.title;
+            document.getElementById('productImage').src = product.image;
+            document.getElementById('productDesc').innerText = product.desc;
+            document.getElementById('productPrice').innerText = `$${product.price.toFixed(2)}`;
+
+            if (product.originalPrice) {
+                document.getElementById('originalPrice').innerText = `$${product.originalPrice.toFixed(2)}`;
+                document.getElementById('originalPrice').style.display = 'inline';
+                document.getElementById('discountBadge').innerText = product.discount + ' OFF';
+                document.getElementById('discountBadge').style.display = 'block';
+            }
+
+            if (product.detailed) {
+                document.getElementById('aboutSection').style.display = 'block';
+                document.getElementById('detailedDesc').innerText = product.detailed;
+            }
+
+            // Re-init icons
+            lucide.createIcons();
+        }
+
+        function addToCart() {
+            // Simple visual feedback
+            const btn = event.currentTarget;
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<span>Added to Cart!</span>';
+            btn.style.background = '#065f46';
+
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.style.background = '';
+            }, 2000);
+        }
+
+        window.onload = loadProduct;
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

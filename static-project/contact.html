@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MediCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, #064e3b, #059669);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .contact-info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 3rem;
+            height: 3rem;
+            background: #ecfdf5;
+            color: #059669;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #059669;
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+
+        textarea.form-control {
+            resize: none;
+            height: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i data-lucide="pill"></i></div>
+                <span class="logo-text">MediCare</span>
+            </a>
+            <nav class="nav-desktop">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+                <a href="admin/dashboard.html" class="nav-link">Admin</a>
+            </nav>
+            <div class="header-actions">
+                <a href="cart.html" class="cart-button">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+                <button class="mobile-menu-btn md-hidden" style="color: var(--gray-600);">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-hero">
+            <div class="container">
+                <h1 style="font-size: 3rem; margin-bottom: 1rem;">Get in Touch</h1>
+                <p style="font-size: 1.25rem; opacity: 0.9;">Our medical support team is here for you 24/7</p>
+            </div>
+        </section>
+
+        <section class="container" style="padding-top: 4rem;">
+            <div class="contact-grid">
+                <div class="contact-info-card">
+                    <div class="contact-icon"><i data-lucide="phone"></i></div>
+                    <h3>Support</h3>
+                    <p style="color: #6b7280; margin-top: 0.5rem;"><a href="tel:+15557774325">+1 (555) 777-HEALTH</a>
+                    </p>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon"><i data-lucide="mail"></i></div>
+                    <h3>Email</h3>
+                    <p style="color: #6b7280; margin-top: 0.5rem;"><a
+                            href="mailto:support@medicare.com">support@medicare.com</a></p>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+                    <h3>Pharmacy</h3>
+                    <p style="color: #6b7280; margin-top: 0.5rem;">456 Medical Blvd, HC 90210</p>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon"><i data-lucide="clock"></i></div>
+                    <h3>Operations</h3>
+                    <p style="color: #6b7280; margin-top: 0.5rem;">Mon-Sun: 24/7 Support</p>
+                </div>
+            </div>
+
+            <div class="contact-form-container" style="margin-bottom: 5rem;">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Send a Request</h2>
+                <form action="#">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Type of Inquiry</label>
+                        <select id="subject" class="form-control" required>
+                            <option value="">Select an option</option>
+                            <option value="prescription">Prescription Inquiry</option>
+                            <option value="tracking">Order Tracking</option>
+                            <option value="returns">Product Returns</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Explain your request..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary"
+                        style="width: 100%; padding: 1rem; font-size: 1rem;">Submit Request</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 1.5rem;">
+                    <div class="logo-icon"><i data-lucide="pill"></i></div>
+                    <span class="logo-text" style="color: white;">MediCare</span>
+                </a>
+                <p style="font-size: 0.875rem;">Your trusted partner for health and wellness. Quality medicines
+                    delivered with care.</p>
+            </div>
+            <div>
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html" class="footer-link">About Us</a></li>
+                    <li><a href="index.html" class="footer-link">Medicines</a></li>
+                    <li><a href="index.html" class="footer-link">Offers</a></li>
+                    <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    <li><a href="admin/dashboard.html" class="footer-link">Admin</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="footer-link">Terms of Service</a></li>
+                    <li><a href="refund.html" class="footer-link">Refund Policy</a></li>
+                    <li><a href="cookies.html" class="footer-link">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Contact Us</h3>
+                <ul class="footer-contact">
+                    <li><i data-lucide="phone" style="width: 1rem; color: #6ee7b7;"></i> <span>+1 (555)
+                            777-HEALTH</span>
+                    </li>
+                    <li><i data-lucide="mail" style="width: 1rem; color: #6ee7b7;"></i>
+                        <span>support@medicare.com</span>
+                    </li>
+                    <li><i data-lucide="map-pin" style="width: 1rem; color: #6ee7b7;"></i> <span>456 Medical Blvd,
+                            Healthcare City, HC 90210</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 MediCare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

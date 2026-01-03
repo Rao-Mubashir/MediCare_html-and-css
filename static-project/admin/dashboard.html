@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MediCare</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .admin-main {
+            padding: 2rem 0;
+            background: #f9fafb;
+            min-height: calc(100vh - 80px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .actions-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .action-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .action-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .action-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f9fafb;
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #4b5563;
+            text-transform: uppercase;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.875rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-processing {
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+        .status-pending {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon"><i data-lucide="pill"></i></div>
+                <span class="logo-text">MediCare</span>
+            </a>
+            <nav class="nav-desktop">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../about.html" class="nav-link">About Us</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link active">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <div class="container">
+            <div style="margin-bottom: 2rem;">
+                <h1 style="font-size: 1.875rem; font-weight: 700;">Pharmacy Dashboard</h1>
+                <p style="color: #4b5563;">Manage your medical supply operations</p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #ecfdf5; color: #059669;">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+                    <span style="color: #4b5563; font-size: 0.875rem;">Total Orders</span>
+                    <span style="font-size: 1.875rem; font-weight: 700;">124</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fff7ed; color: #ea580c;">
+                        <i data-lucide="pill"></i>
+                    </div>
+                    <span style="color: #4b5563; font-size: 0.875rem;">Active Products</span>
+                    <span style="font-size: 1.875rem; font-weight: 700;">32</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fdf2f8; color: #db2777;">
+                        <i data-lucide="tag"></i>
+                    </div>
+                    <span style="color: #4b5563; font-size: 0.875rem;">Health Offers</span>
+                    <span style="font-size: 1.875rem; font-weight: 700;">8</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #f0fdf4; color: #16a34a;">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <span style="color: #4b5563; font-size: 0.875rem;">Total Sales</span>
+                    <span style="font-size: 1.875rem; font-weight: 700;">$4,250.00</span>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem;">Quick Actions</h2>
+            <div class="actions-grid">
+                <a href="offers.html" class="action-card">
+                    <div class="action-icon" style="background: linear-gradient(to bottom right, #059669, #064e3b);">
+                        <i data-lucide="tag"></i>
+                    </div>
+                    <h3 style="font-weight: 700; font-size: 1.125rem; margin-bottom: 0.5rem;">Manage Offers</h3>
+                    <p style="color: #4b5563; font-size: 0.875rem;">Promotional healthcare discounts</p>
+                </a>
+                <a href="menu.html" class="action-card">
+                    <div class="action-icon" style="background: linear-gradient(to bottom right, #059669, #10b981);">
+                        <i data-lucide="pill"></i>
+                    </div>
+                    <h3 style="font-weight: 700; font-size: 1.125rem; margin-bottom: 0.5rem;">Manage Medicine</h3>
+                    <p style="color: #4b5563; font-size: 0.875rem;">Add or update healthcare products</p>
+                </a>
+                <a href="orders.html" class="action-card">
+                    <div class="action-icon" style="background: linear-gradient(to bottom right, #047857, #065f46);">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+                    <h3 style="font-weight: 700; font-size: 1.125rem; margin-bottom: 0.5rem;">Order Tracking</h3>
+                    <p style="color: #4b5563; font-size: 0.875rem;">View and manage clinical orders</p>
+                </a>
+            </div>
+
+            <!-- Recent Orders -->
+            <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem;">Recent Orders</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-family: monospace; font-weight: 600;">ORD-12345</td>
+                            <td>
+                                <div style="font-weight: 500;">John Doe</div>
+                                <div style="color: #6b7280; font-size: 0.75rem;">john@example.com</div>
+                            </td>
+                            <td style="font-weight: 600;">$42.50</td>
+                            <td><span class="status-badge status-completed">Delivered</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-family: monospace; font-weight: 600;">ORD-12346</td>
+                            <td>
+                                <div style="font-weight: 500;">Jane Smith</div>
+                                <div style="color: #6b7280; font-size: 0.75rem;">jane@example.com</div>
+                            </td>
+                            <td style="font-weight: 600;">$25.98</td>
+                            <td><span class="status-badge status-processing">Dispatching</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-family: monospace; font-weight: 600;">ORD-12347</td>
+                            <td>
+                                <div style="font-weight: 500;">Mike Johnson</div>
+                                <div style="color: #6b7280; font-size: 0.75rem;">mike@example.com</div>
+                            </td>
+                            <td style="font-weight: 600;">$15.99</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="../index.html" class="logo" style="margin-bottom: 1.5rem;">
+                    <div class="logo-icon"><i data-lucide="pill"></i></div>
+                    <span class="logo-text" style="color: white;">MediCare</span>
+                </a>
+                <p style="font-size: 0.875rem;">Your trusted partner for health and wellness. Quality medicines
+                    delivered with care.</p>
+            </div>
+            <div>
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="../about.html" class="footer-link">About Us</a></li>
+                    <li><a href="../index.html" class="footer-link">Medicines</a></li>
+                    <li><a href="../index.html" class="footer-link">Offers</a></li>
+                    <li><a href="../contact.html" class="footer-link">Contact</a></li>
+                    <li><a href="dashboard.html" class="footer-link">Admin</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="../privacy.html" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="../terms.html" class="footer-link">Terms of Service</a></li>
+                    <li><a href="../refund.html" class="footer-link">Refund Policy</a></li>
+                    <li><a href="../cookies.html" class="footer-link">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Contact Us</h3>
+                <ul class="footer-contact">
+                    <li><i data-lucide="phone" style="width: 1rem; color: #6ee7b7;"></i> <span>+1 (555)
+                            777-HEALTH</span>
+                    </li>
+                    <li><i data-lucide="mail" style="width: 1rem; color: #6ee7b7;"></i>
+                        <span>support@medicare.com</span>
+                    </li>
+                    <li><i data-lucide="map-pin" style="width: 1rem; color: #6ee7b7;"></i> <span>456 Medical Blvd, HC
+                            90210</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 MediCare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
